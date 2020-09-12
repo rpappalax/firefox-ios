@@ -27,17 +27,21 @@ class BaseTestCase: XCTestCase {
         navigator = createScreenGraph(for: self, with: app).navigator()
         userState = navigator.userState
     }
-
+    
     func setUpApp() {
-        app.launchArguments = [LaunchArguments.Test] + launchArguments
+        if !launchArguments.contains("FIREFOX_PERFORMANCE_TEST") {
+            app.launchArguments = [LaunchArguments.Test] + launchArguments
+        } else {
+            app.launchArguments = [LaunchArguments.PerformanceTest] + launchArguments
+        }
         app.launch()
     }
-
+    
     override func setUp() {
-        super.setUp()
-        continueAfterFailure = false
-        setUpApp()
-        setUpScreenGraph()
+            super.setUp()
+            continueAfterFailure = false
+            setUpApp()
+            setUpScreenGraph()
     }
 
     override func tearDown() {

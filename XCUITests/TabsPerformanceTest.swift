@@ -18,7 +18,7 @@ let fixtures = ["testPerfTabs10": "testTabsPerformance-brower.db"]
             let parts = name.replacingOccurrences(of: "]", with: "").split(separator: " ")
             let key = String(parts[1])
             if testWithDB.contains(key) {
-                    launchArguments = [LaunchArguments.SkipIntro, LaunchArguments.SkipWhatsNew, LaunchArguments.SkipETPCoverSheet,  LaunchArguments.LoadDatabasePrefix + testTabsDB, LaunchArguments.LoadTabsStateArchive + testTabsStateArchive]
+                launchArguments = [LaunchArguments.PerformanceTest, LaunchArguments.SkipIntro, LaunchArguments.SkipWhatsNew, LaunchArguments.SkipETPCoverSheet,  LaunchArguments.LoadDatabasePrefix + testTabsDB, LaunchArguments.LoadTabsStateArchive + testTabsStateArchive]
             }
             super.setUp()
         }

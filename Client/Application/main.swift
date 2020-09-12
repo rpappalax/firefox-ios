@@ -6,7 +6,7 @@ import Shared
 
 private var appDelegate: AppDelegate.Type
 
-if AppConstants.IsRunningTest {
+if AppConstants.IsRunningTest || AppConstants.IsRunningPerfTest {
     appDelegate = TestAppDelegate.self
 } else {
     appDelegate = AppDelegate.self
