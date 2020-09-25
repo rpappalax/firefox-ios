@@ -1,70 +1,201 @@
 import XCTest
 
 class TabsPerformanceTest: BaseTestCase {
-let fixtures = ["testPerfTabs10": "testTabsPerformance-brower.db"]
 
-    let testWithTabs:[String:String] = ["testPerfTabs5": "tabsState5.archive","testPerfTabs5Setup": "tabsState5.archive"]
+    let fixtures:[String:String] = ["testPerfTabs10": "tabsState10.archive","testPerfTabs20": "tabsState20.archive","testPerfTabs40": "tabsState40.archive","testPerfTabs80": "tabsState80.archive","testPerfTabs160": "tabsState160.archive","testPerfTabs320": "tabsState320.archive", "testPerfTabs640": "tabsState640.archive", "testPerfTabs1280": "tabsState1280.archive"]
 
-        override func setUp() {
-            // Test name looks like: "[Class testFunc]", parse out function name
-            let parts = name.replacingOccurrences(of: "]", with: "").split(separator: " ")
-            let functionName = String(parts[1])
-            let archiveName = testWithTabs[functionName]
-            
-            launchArguments = [LaunchArguments.PerformanceTest, LaunchArguments.SkipIntro, LaunchArguments.SkipWhatsNew, LaunchArguments.SkipETPCoverSheet]
-            
-            if testWithTabs.keys.contains(functionName) {
-                print("if!!")
-                print(archiveName!)
-                launchArguments.append(LaunchArguments.LoadTabsStateArchive + archiveName!)
-            }
-            super.setUp()
+    override func setUp() {
+        // Test name looks like: "[Class testFunc]", parse out function name
+        let parts = name.replacingOccurrences(of: "]", with: "").split(separator: " ")
+        let functionName = String(parts[1])
+        let archiveName = fixtures[functionName]
+        
+        // defaults
+        launchArguments = [LaunchArguments.PerformanceTest, LaunchArguments.SkipIntro, LaunchArguments.SkipWhatsNew, LaunchArguments.SkipETPCoverSheet]
+        
+        // append specific load profiles to LaunchArguments
+        if fixtures.keys.contains(functionName) {
+            launchArguments.append(LaunchArguments.LoadTabsStateArchive + archiveName!)
         }
-
-        override func tearDown() {
-            super.tearDown()
-        }
-
-
-    func testPerfTabs5() {
-        // load application and wait
-        // observe if test DBs are successfully loaded
-          do {
-              sleep(100)
-          }
+        super.setUp()
     }
+
+    override func tearDown() {
+        super.tearDown()
+    }
+
+    // TODO: 1 perf test per tabsStateArchive of size:
+    // 1, 10, 20, 40, 80, 160, 320, etc.(tab count)
+    
+    // baseline
+//    func testPerfTabs1() {
+//        if #available(iOS 13.0, *) {
+//            measure(metrics: [
+//                XCTClockMetric(), // to measure timeClock Mon
+//                XCTCPUMetric(), // to measure cpu cycles
+//                XCTStorageMetric(), // to measure storage consuming
+//                XCTMemoryMetric()]) {
+//                app.launch()
+//            }
+//        }
+//    }
     
     func testPerfTabs10() {
-        // load application and wait
-        // observe if test DBs are successfully loaded
-          do {
-              sleep(100)
-          }
+        if #available(iOS 13.0, *) {
+            measure(metrics: [
+                XCTClockMetric(), // to measure timeClock Mon
+                XCTCPUMetric(), // to measure cpu cycles
+                XCTStorageMetric(), // to measure storage consuming
+                XCTMemoryMetric()]) {
+                app.launch()
+            }
+        }
     }
-
-    func testPerfTabs5Setup() {
-        let fileName = "/Users/rpappalax/git/firefox-ios-NEW-ISSUE/test-fixtures/topdomains_10.txt"
+    
+    func testPerfTabs20() {
+        if #available(iOS 13.0, *) {
+            measure(metrics: [
+                XCTClockMetric(), // to measure timeClock Mon
+                XCTCPUMetric(), // to measure cpu cycles
+                XCTStorageMetric(), // to measure storage consuming
+                XCTMemoryMetric()]) {
+                app.launch()
+            }
+        }
+    }
+    
+    func testPerfTabs40() {
+        if #available(iOS 13.0, *) {
+            measure(metrics: [
+                XCTClockMetric(), // to measure timeClock Mon
+                XCTCPUMetric(), // to measure cpu cycles
+                XCTStorageMetric(), // to measure storage consuming
+                XCTMemoryMetric()]) {
+                app.launch()
+            }
+        }
+    }
+    
+    func testPerfTabs80() {
+        if #available(iOS 13.0, *) {
+            measure(metrics: [
+                XCTClockMetric(), // to measure timeClock Mon
+                XCTCPUMetric(), // to measure cpu cycles
+                XCTStorageMetric(), // to measure storage consuming
+                XCTMemoryMetric()]) {
+                app.launch()
+            }
+        }
+    }
+    
+    func testPerfTabs160() {
+        if #available(iOS 13.0, *) {
+            measure(metrics: [
+                XCTClockMetric(), // to measure timeClock Mon
+                XCTCPUMetric(), // to measure cpu cycles
+                XCTStorageMetric(), // to measure storage consuming
+                XCTMemoryMetric()]) {
+                app.launch()
+            }
+        }
+    }
+    
+    func testPerfTabs320() {
+        if #available(iOS 13.0, *) {
+            measure(metrics: [
+                XCTClockMetric(), // to measure timeClock Mon
+                XCTCPUMetric(), // to measure cpu cycles
+                XCTStorageMetric(), // to measure storage consuming
+                XCTMemoryMetric()]) {
+                app.launch()
+            }
+        }
+    }
+    
+    func testPerfTabs640() {
+        if #available(iOS 13.0, *) {
+            measure(metrics: [
+                XCTClockMetric(), // to measure timeClock Mon
+                XCTCPUMetric(), // to measure cpu cycles
+                XCTStorageMetric(), // to measure storage consuming
+                XCTMemoryMetric()]) {
+                app.launch()
+            }
+        }
+    }
+    
+    func testPerfTabs1280() {
+        if #available(iOS 13.0, *) {
+            measure(metrics: [
+                XCTClockMetric(), // to measure timeClock Mon
+                XCTCPUMetric(), // to measure cpu cycles
+                XCTStorageMetric(), // to measure storage consuming
+                XCTMemoryMetric()]) {
+                app.launch()
+            }
+        }
+    }
+    
+    func testPerfTabs1280tabTray() {
+        
+        // launch app
+        // go to tab tray
+        if #available(iOS 13.0, *) {
+            measure(metrics: [
+                XCTClockMetric(), // to measure timeClock Mon
+                XCTCPUMetric(), // to measure cpu cycles
+                XCTStorageMetric(), // to measure storage consuming
+                XCTMemoryMetric()]) {
+                app.launch()
+            }
+        }
+    }
+    
+    func testPerfOpenApp() {
+        if #available(iOS 13.0, *) {
+            measure(metrics: [
+                XCTClockMetric(), // to measure timeClock Mon
+                XCTCPUMetric(), // to measure cpu cycles
+                XCTStorageMetric(), // to measure storage consuming
+                XCTMemoryMetric()]) {
+                    app.launch()
+            }
+        }
+    }
+    
+    func testTabs5Setup() {
+        let archiveSize = 1080
+        let fileName = "/Users/rpappalax/git/firefox-ios-TABS-PERF-WIP/Client/Assets/topdomains.txt"
         var contents = ""
         var urls = [String]()
         
         do {
             contents = try String(contentsOfFile: fileName)
             urls = contents.components(separatedBy: "\n")
-//            print(contents)
         } catch {
             print("COULDNT LOAD")
         }
-
         //navigator.performAction(Action.TogglePrivateMode)
         navigator.goto(NewTabScreen)
-//        let urls = ["yahoo.com", "google.com", "cnn.com"]
-//
-        for url in urls {
-            print(url)
-            navigator.openNewURL(urlString: url)
-            waitUntilPageLoad()
+
+        var counter = 0
+        let topDomainsCount = urls.count
+        
+        //for url in urls {
+        for n in 0...archiveSize {
+
+//            navigator.openNewURL(urlString: urls[n])
+//            waitForTabsButton()
+            print(urls[counter])
+            
+            if (counter >= archiveSize) {
+                break
+            }
+            // if we don't have enough urls, start from the beginning of list
+            if (counter >= (topDomainsCount - 1)) {
+                counter = 0
+            }
+            counter += 1
         }
-        waitForTabsButton()
-        navigator.goto(TabTray)
     }
 }
