@@ -34,6 +34,11 @@ function get_device_path () {
     echo "SIM_DEVICE_PATH: ${SIM_DEVICE_PATH}"
 }
 
+function shutdown_sim() {
+    echo "DESTROYING SIM"
+    xcrun simctl shutdown ${SIM_DEVICE_ID} 
+}
+
 function destroy_sim() {
     echo "DESTROYING SIM"
     xcrun simctl delete ${SIM_DEVICE_ID} 
@@ -110,13 +115,15 @@ function open_tab_group() {
     done
 }
 
-#create_sim
-#boot_sim
+create_sim
+boot_sim
 get_device_path
-#build_app
-#install_app
-open_tab_group
-#destroy_sim
+build_app
+install_app
+# TODO: need to figure out how to do a silent openurl (without prompt)
+#open_tab_group
+shutdown_sim
+destroy_sim
 
 
 
